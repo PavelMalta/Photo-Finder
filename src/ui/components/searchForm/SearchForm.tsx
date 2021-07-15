@@ -3,6 +3,7 @@ import {Button, Grid} from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import {useDispatch} from "react-redux";
+import { getCardsTC } from "../../../bll/image-reducer";
 
 
 export const SearchForm = () => {
@@ -15,7 +16,7 @@ export const SearchForm = () => {
         setInputValue(e.currentTarget.value)
     }
     const onClickHandler = () => {
-       
+        dispatch(getCardsTC({page: 1, text: inputValue}))
     }
 
     return (

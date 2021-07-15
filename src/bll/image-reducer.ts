@@ -1,3 +1,5 @@
+import { Dispatch } from "redux"
+import {imageAPI, ImageQueryParamsType } from "../dal/api"
 
 const initialState = {
 
@@ -16,7 +18,12 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
 const getImageAC = () => ({type: "GET-IMAGE"} as const)
 
 //Thunks
-
+export const getCardsTC = (imageQueryParams: ImageQueryParamsType) => (dispatch: Dispatch<ActionType>) => {
+    imageAPI.getImage(imageQueryParams)
+        .then(res => {
+            console.log(res.data)
+        })
+}
 
 //Types
 type InitialStateType = typeof initialState
