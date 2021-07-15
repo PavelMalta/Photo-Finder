@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=true&api_key=88511e631d64958716f46a5c31c01824&per_page=20'
+    baseURL: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=true&api_key=0ec80156bc9022b05d6f61d04f799f84'
 })
 
 export const imageAPI = {
@@ -12,8 +12,9 @@ export const imageAPI = {
 
 //Types
 export type ImageQueryParamsType = {
-    page: number
-    text: string
+    per_page?: number
+    page?: number
+    text?: string
 }
 
 export type ImageResponseType = {
