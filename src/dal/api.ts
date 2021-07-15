@@ -6,7 +6,7 @@ const instance = axios.create({
 
 export const imageAPI = {
     getImage(imageQueryParams: ImageQueryParamsType) {
-        return instance.get('',{params:imageQueryParams})
+        return instance.get<ImageResponseType, AxiosResponse<ImageResponseType>>('',{params:imageQueryParams})
     }
 }
 
@@ -14,4 +14,29 @@ export const imageAPI = {
 export type ImageQueryParamsType = {
     page: number
     text: string
+}
+
+export type ImageResponseType = {
+    photos: PhotosType
+    stat: string
+}
+
+export type PhotosType = {
+    page: number
+    pages: number
+    perpage: number
+    total: number
+    photo: Array<PhotoType>
+}
+
+export type PhotoType = {
+    id: string
+    owner: string
+    secret: string
+    server: string
+    farm: number
+    title: string
+    ispublic: number
+    isfriend: number
+    isfamily: number
 }

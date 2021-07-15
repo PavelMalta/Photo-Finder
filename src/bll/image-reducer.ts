@@ -15,7 +15,7 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
 }
 
 //Actions
-const getImageAC = () => ({type: "GET-IMAGE"} as const)
+const getImageAC = () => ({type: "GET-IMAGE", } as const)
 
 //Thunks
 export const getCardsTC = (imageQueryParams: ImageQueryParamsType) => (dispatch: Dispatch<ActionType>) => {
