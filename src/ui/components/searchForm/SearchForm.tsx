@@ -7,8 +7,12 @@ import {useDispatch} from "react-redux";
 
 export const SearchForm = () => {
 
+    //HOOK
+    const [inputValue, setInputValue] = useState<string>("")
+    const dispatch = useDispatch()
+
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        
+        setInputValue(e.currentTarget.value)
     }
     const onClickHandler = () => {
        
