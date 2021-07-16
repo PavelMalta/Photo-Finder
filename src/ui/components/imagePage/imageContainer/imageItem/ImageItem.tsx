@@ -12,23 +12,25 @@ type ImageItemPropsType = {
     server: string
     farm: number
     title: string
+    addImageFromBookmarks: (imageUrl: string, valueTags: string) => void
 }
 
 export const ImageItem: React.FC<ImageItemPropsType> = (
-    {id, owner, secret, server, farm, title}
+    {id, owner, secret, server, farm, title, addImageFromBookmarks}
 ) => {
     //HOOK
     const [changeButton, setChangeButton] = useState(true);
     const [valueTags, setValueTags] = React.useState('');
 
+    const imageUrl = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`
+
     const handleChangeTagsImput = (event: ChangeEvent<HTMLInputElement>) => {
         setValueTags(event.target.value);
     };
-
-    const picUrl = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`
-
+    
     const onClickBookmarkButtonHandler = () => {
         setChangeButton(false)
+        addImageFromBookmarks(imageUrl, valueTags);
     }
     const onClickRemoveButtonHandler = () => {
         setChangeButton(true)
@@ -38,7 +40,7 @@ export const ImageItem: React.FC<ImageItemPropsType> = (
         <Grid item>
             <Paper elevation={3} style={{padding: "10px"}}>
                 <div className={s.photoBox}>
-                    <img src={picUrl} width="200px" height="200px"/>
+                    <img src={imageUrl} width="200px" height="200px"/>
                 </div>
                 <div>
                     {changeButton
@@ -68,6 +70,7 @@ export const ImageItem: React.FC<ImageItemPropsType> = (
                         id="outlined-multiline-flexible"
                         label="some tags?"
                         multiline
+                        disabled={!changeButton}
                         size="small"
                         maxRows={4}
                         value={valueTags}
@@ -79,5 +82,4 @@ export const ImageItem: React.FC<ImageItemPropsType> = (
             </Paper>
         </Grid>
     )
-
 }

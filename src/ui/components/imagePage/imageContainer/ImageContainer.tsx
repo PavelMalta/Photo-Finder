@@ -1,7 +1,8 @@
 import {Grid} from '@material-ui/core';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCardsTC, setOptionsPageAC } from '../../../../bll/image-reducer';
+import {addImageToBookmarksAC} from '../../../../bll/bookmarks-reducer';
+import {getCardsTC, setOptionsPageAC} from '../../../../bll/image-reducer';
 import {AppRootStateType} from '../../../../bll/store';
 import {PhotoType} from '../../../../dal/api';
 import {PaginationRounded} from '../../../common/pagination/PaginationRounded';
@@ -19,12 +20,16 @@ export const ImageContainer = () => {
         dispatch(setOptionsPageAC(page))
         dispatch(getCardsTC())
     }
-    
+
+    const addImageFromBookmarks = (imageUrl: string, valueTags: string) => {
+        dispatch(addImageToBookmarksAC(imageUrl, valueTags))
+    }
+
     return (
         <>
             <Grid container style={{marginBottom: "30px"}}>
-                <PaginationRounded page={page} 
-                                   count={pages} 
+                <PaginationRounded page={page}
+                                   count={pages}
                                    onChangePage={onChangePage}/>
             </Grid>
             <Grid container spacing={5} style={{justifyContent: "center"}}>
@@ -36,6 +41,7 @@ export const ImageContainer = () => {
                                        server={item.server}
                                        farm={item.farm}
                                        title={item.title}
+                                       addImageFromBookmarks={addImageFromBookmarks}
                     />)
                 })}
             </Grid>
