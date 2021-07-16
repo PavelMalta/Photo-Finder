@@ -1,6 +1,7 @@
 import {Grid} from '@material-ui/core';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {getCardsTC, setOptionsPageAC } from '../../../../bll/image-reducer';
 import {AppRootStateType} from '../../../../bll/store';
 import {PhotoType} from '../../../../dal/api';
 import {PaginationRounded} from '../../../common/pagination/PaginationRounded';
@@ -10,13 +11,21 @@ export const ImageContainer = () => {
 
     //HOOK
     const photoData = useSelector<AppRootStateType, Array<PhotoType>>(state => state.image.imageData.photo)
+    const page = useSelector<AppRootStateType, number>(state => state.image.imageData.page)
+    const pages = useSelector<AppRootStateType, number>(state => state.image.imageData.pages)
+    const dispatch = useDispatch()
 
-
+    const onChangePage = (page: number) => {
+        dispatch(setOptionsPageAC(page))
+        dispatch(getCardsTC())
+    }
+    
     return (
         <>
             <Grid container style={{marginBottom: "30px"}}>
-                <PaginationRounded page={1} count={100} onChangeHandler={() => {
-                }}/>
+                <PaginationRounded page={page} 
+                                   count={pages} 
+                                   onChangePage={onChangePage}/>
             </Grid>
             <Grid container spacing={5} style={{justifyContent: "center"}}>
                 {photoData.map(item => {

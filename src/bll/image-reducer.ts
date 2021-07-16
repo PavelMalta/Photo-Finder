@@ -21,6 +21,8 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
             return {...state, imageData: action.data}
         case "SET-OPTIONS":
             return {...state, options: {...state.options, ...action.options}}
+        case "SET-OPTIONS-PAGE":
+            return {...state, options: {...state.options, page: action.page}}
         case "IS-SEARCHING":
             return {...state, isSearching: action.isSearching}
         case "IS-SHOW-IMAGE":
@@ -33,6 +35,7 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
 //Actions
 const getImageAC = (data: PhotosType) => ({type: "GET-IMAGE", data} as const)
 export const setOptionsAC = (options: ImageQueryParamsType) => ({type: "SET-OPTIONS", options} as const)
+export const setOptionsPageAC = (page: number) => ({type: "SET-OPTIONS-PAGE", page} as const)
 const isSearchingAC = (isSearching: boolean) => ({type: "IS-SEARCHING", isSearching} as const)
 export const isShowImageAC = (isShowImage: boolean) => ({type: "IS-SHOW-IMAGE", isShowImage} as const)
 
@@ -61,5 +64,6 @@ type InitialStateType = {
 
 type ActionType = ReturnType<typeof getImageAC>
                 | ReturnType<typeof setOptionsAC>
+                | ReturnType<typeof setOptionsPageAC>
                 | ReturnType<typeof isSearchingAC>
                 | ReturnType<typeof isShowImageAC>
