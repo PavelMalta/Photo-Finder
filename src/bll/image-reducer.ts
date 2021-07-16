@@ -1,6 +1,6 @@
-import { Dispatch } from "redux"
+import {Dispatch} from "redux"
 import {imageAPI, ImageQueryParamsType, PhotosType} from "../dal/api"
-import { AppRootStateType } from "./store"
+import {AppRootStateType} from "./store"
 
 const initialState = {
     imageData: {
@@ -11,7 +11,8 @@ const initialState = {
         photo: []
     },
     options: {per_page: 20},
-    isSearching: false
+    isSearching: false,
+    isShowImage: false
 }
 
 export const imageReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -22,6 +23,8 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
             return {...state, options: {...state.options, ...action.options}}
         case "IS-SEARCHING":
             return {...state, isSearching: action.isSearching}
+        case "IS-SHOW-IMAGE":
+            return {...state, isShowImage: action.isShowImage}
         default:
             return state
     }
@@ -31,9 +34,10 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
 const getImageAC = (data: PhotosType) => ({type: "GET-IMAGE", data} as const)
 export const setOptionsAC = (options: ImageQueryParamsType) => ({type: "SET-OPTIONS", options} as const)
 const isSearchingAC = (isSearching: boolean) => ({type: "IS-SEARCHING", isSearching} as const)
+const isShowImageAC = (isShowImage: boolean) => ({type: "IS-SHOW-IMAGE", isShowImage} as const)
 
 //Thunks
-export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: ()=> AppRootStateType) => {
+export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: () => AppRootStateType) => {
     dispatch(isSearchingAC(true))
 
     const reduxOptions = getState().image.options
@@ -43,6 +47,7 @@ export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: ()=> 
         })
         .finally(() => {
             dispatch(isSearchingAC(false))
+            dispatch(isShowImageAC(true))
         })
 }
 
@@ -51,6 +56,10 @@ type InitialStateType = {
     imageData: PhotosType
     options: ImageQueryParamsType
     isSearching: boolean
+    isShowImage: boolean
 }
 
-type ActionType = ReturnType<typeof getImageAC> | ReturnType<typeof setOptionsAC> | ReturnType<typeof isSearchingAC>
+type ActionType = ReturnType<typeof getImageAC>
+                | ReturnType<typeof setOptionsAC>
+                | ReturnType<typeof isSearchingAC>
+                | ReturnType<typeof isShowImageAC>
