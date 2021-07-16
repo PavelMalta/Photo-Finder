@@ -13,8 +13,7 @@ export const SearchForm = () => {
     //HOOK
     const dispatch = useDispatch()
     const [searchTerm, setSearchTerm] = useState('')
-    const isSearching = useSelector<AppRootStateType, boolean>(state => state.image.isSearching)
-
+    
     const debouncedSearchTerm = useDebounce(searchTerm, 1000)
 
     useEffect(() => {
