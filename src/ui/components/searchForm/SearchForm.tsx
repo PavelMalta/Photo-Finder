@@ -3,7 +3,7 @@ import {Button, Grid} from "@material-ui/core";
 import {TextField} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import {useDispatch, useSelector} from "react-redux";
-import {getCardsTC, setOptionsAC} from "../../../bll/image-reducer";
+import {getCardsTC, isShowImageAC, setOptionsAC} from "../../../bll/image-reducer";
 import {useDebounce} from "../../common/customHook/use-debounce";
 import { AppRootStateType } from "../../../bll/store";
 

@@ -34,7 +34,7 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
 const getImageAC = (data: PhotosType) => ({type: "GET-IMAGE", data} as const)
 export const setOptionsAC = (options: ImageQueryParamsType) => ({type: "SET-OPTIONS", options} as const)
 const isSearchingAC = (isSearching: boolean) => ({type: "IS-SEARCHING", isSearching} as const)
-const isShowImageAC = (isShowImage: boolean) => ({type: "IS-SHOW-IMAGE", isShowImage} as const)
+export const isShowImageAC = (isShowImage: boolean) => ({type: "IS-SHOW-IMAGE", isShowImage} as const)
 
 //Thunks
 export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: () => AppRootStateType) => {
