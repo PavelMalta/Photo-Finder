@@ -11,7 +11,7 @@ const initialState = {
         photo: []
     },
     options: {per_page: 20},
-    isFetching: false
+    isSearching: false
 }
 
 export const imageReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -20,8 +20,8 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
             return {...state, imageData: action.data}
         case "SET-OPTIONS":
             return {...state, options: {...state.options, ...action.options}}
-        case "IS-FETCHING":
-            return {...state, isFetching: action.isFetching}
+        case "IS-SEARCHING":
+            return {...state, isSearching: action.isSearching}
         default:
             return state
     }
@@ -30,11 +30,11 @@ export const imageReducer = (state: InitialStateType = initialState, action: Act
 //Actions
 const getImageAC = (data: PhotosType) => ({type: "GET-IMAGE", data} as const)
 export const setOptionsAC = (options: ImageQueryParamsType) => ({type: "SET-OPTIONS", options} as const)
-const isFetchingAC = (isFetching: boolean) => ({type: "IS-FETCHING", isFetching} as const)
+const isSearchingAC = (isSearching: boolean) => ({type: "IS-SEARCHING", isSearching} as const)
 
 //Thunks
 export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: ()=> AppRootStateType) => {
-    dispatch(isFetchingAC(true))
+    dispatch(isSearchingAC(true))
 
     const reduxOptions = getState().image.options
     imageAPI.getImage(reduxOptions)
@@ -42,7 +42,7 @@ export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: ()=> 
             dispatch(getImageAC(res.data.photos))
         })
         .finally(() => {
-            dispatch(isFetchingAC(false))
+            dispatch(isSearchingAC(false))
         })
 }
 
@@ -50,7 +50,7 @@ export const getCardsTC = () => (dispatch: Dispatch<ActionType>, getState: ()=> 
 type InitialStateType = {
     imageData: PhotosType
     options: ImageQueryParamsType
-    isFetching: boolean
+    isSearching: boolean
 }
 
-type ActionType = ReturnType<typeof getImageAC> | ReturnType<typeof setOptionsAC> | ReturnType<typeof isFetchingAC>
+type ActionType = ReturnType<typeof getImageAC> | ReturnType<typeof setOptionsAC> | ReturnType<typeof isSearchingAC>

@@ -1,23 +1,32 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {Button, Grid} from "@material-ui/core";
-import { TextField } from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
-import {useDispatch} from "react-redux";
-import { getCardsTC, setOptionsAC } from "../../../bll/image-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {getCardsTC, setOptionsAC} from "../../../bll/image-reducer";
+import {useDebounce} from "../../common/customHook/use-debounce";
+import { AppRootStateType } from "../../../bll/store";
 
 
 export const SearchForm = () => {
 
     //HOOK
-    const [inputValue, setInputValue] = useState<string>("")
     const dispatch = useDispatch()
+    const [searchTerm, setSearchTerm] = useState('')
+    const isSearching = useSelector<AppRootStateType, boolean>(state => state.image.isSearching)
+
+    const debouncedSearchTerm = useDebounce(searchTerm, 1000)
+
+    useEffect(() => {
+            if (debouncedSearchTerm) {
+                dispatch(setOptionsAC({page: 1, text: debouncedSearchTerm}))
+                dispatch(getCardsTC())
+            }
+        }, [debouncedSearchTerm]
+    )
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.currentTarget.value)
-    }
-    const onClickHandler = () => {
-        dispatch(setOptionsAC({page: 1, text: inputValue}))
-        dispatch(getCardsTC())
+        setSearchTerm(e.currentTarget.value)
     }
 
     return (
@@ -26,18 +35,9 @@ export const SearchForm = () => {
                 id="standard-textarea"
                 label="Find pictures"
                 multiline
-                style={{ width: "86%"}}
+                style={{width: "100%"}}
                 onChange={onChangeHandler}
             />
-            <Button
-                variant="contained"
-                color="primary"
-                size="medium"
-                startIcon={<SearchIcon />}
-                onClick={onClickHandler}
-            >
-                Search
-            </Button>
         </Grid>
     )
 }
