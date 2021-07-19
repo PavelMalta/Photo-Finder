@@ -7,10 +7,14 @@ type BookmarksImagePropsType = {
     imageId: string,
     imageUrl: string
     valueTags: string
+    removeImage: (imageId: string) => void
 }
 
-export const BookmarksImage: React.FC<BookmarksImagePropsType> = ({imageId, imageUrl, valueTags}) => {
+export const BookmarksImage: React.FC<BookmarksImagePropsType> = ({imageId, imageUrl, valueTags, removeImage}) => {
 
+    const onclickHandler = () => {
+        removeImage(imageId)
+    }
 
     return (
         <Grid item>
@@ -25,7 +29,7 @@ export const BookmarksImage: React.FC<BookmarksImagePropsType> = ({imageId, imag
                             size="small"
                             startIcon={<DeleteIcon/>}
                             style={{margin: "10px 0"}}
-                            onClick={()=>{}}
+                            onClick={onclickHandler}
                         >
                             Remove it
                         </Button>
