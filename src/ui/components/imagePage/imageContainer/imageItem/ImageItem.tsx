@@ -40,7 +40,7 @@ export const ImageItem: React.FC<ImageItemPropsType> = (
         <Grid item>
             <Paper elevation={3} style={{padding: "10px"}}>
                 <div className={s.photoBox}>
-                    <img src={imageUrl} width="200px" height="200px"/>
+                    <img src={imageUrl} width="250px" height="200px"/>
                 </div>
                 <div>
                     {changeButton
