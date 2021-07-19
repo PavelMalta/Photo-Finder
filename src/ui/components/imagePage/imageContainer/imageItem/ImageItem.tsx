@@ -12,7 +12,7 @@ type ImageItemPropsType = {
     server: string
     farm: number
     title: string
-    addImageFromBookmarks: (imageUrl: string, valueTags: string) => void
+    addImageFromBookmarks: (imageId: string, imageUrl: string, valueTags: string) => void
 }
 
 export const ImageItem: React.FC<ImageItemPropsType> = (
@@ -30,7 +30,7 @@ export const ImageItem: React.FC<ImageItemPropsType> = (
     
     const onClickBookmarkButtonHandler = () => {
         setChangeButton(false)
-        addImageFromBookmarks(imageUrl, valueTags);
+        addImageFromBookmarks(id, imageUrl, valueTags);
     }
     const onClickRemoveButtonHandler = () => {
         setChangeButton(true)

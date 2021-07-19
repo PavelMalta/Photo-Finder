@@ -21,8 +21,8 @@ export const ImageContainer = () => {
         dispatch(getCardsTC())
     }
 
-    const addImageFromBookmarks = (imageUrl: string, valueTags: string) => {
-        dispatch(addImageToBookmarksAC(imageUrl, valueTags))
+    const addImageFromBookmarks = (imageId: string, imageUrl: string, valueTags: string) => {
+        dispatch(addImageToBookmarksAC(imageId, imageUrl, valueTags))
     }
 
     return (
