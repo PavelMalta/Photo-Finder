@@ -1,7 +1,7 @@
 import {Grid} from '@material-ui/core';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addImageToBookmarksAC} from '../../../../bll/bookmarks-reducer';
+import {addImageToBookmarksAC, removeImageAC} from '../../../../bll/bookmarks-reducer';
 import {getCardsTC, setOptionsPageAC} from '../../../../bll/image-reducer';
 import {AppRootStateType} from '../../../../bll/store';
 import {PhotoType} from '../../../../dal/api';
@@ -24,6 +24,10 @@ export const ImageContainer = () => {
     const addImageFromBookmarks = (imageId: string, imageUrl: string, valueTags: string) => {
         dispatch(addImageToBookmarksAC(imageId, imageUrl, valueTags))
     }
+    
+    const removeImageFromBookmarks = (imageId: string) => {
+        dispatch(removeImageAC(imageId))
+    }
 
     return (
         <>
@@ -42,6 +46,7 @@ export const ImageContainer = () => {
                                        farm={item.farm}
                                        title={item.title}
                                        addImageFromBookmarks={addImageFromBookmarks}
+                                       removeImageFromBookmarks={removeImageFromBookmarks}
                     />)
                 })}
             </Grid>

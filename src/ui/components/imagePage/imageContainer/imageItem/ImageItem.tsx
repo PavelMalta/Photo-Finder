@@ -13,10 +13,11 @@ type ImageItemPropsType = {
     farm: number
     title: string
     addImageFromBookmarks: (imageId: string, imageUrl: string, valueTags: string) => void
+    removeImageFromBookmarks: (imageId: string) => void
 }
 
 export const ImageItem: React.FC<ImageItemPropsType> = (
-    {id, owner, secret, server, farm, title, addImageFromBookmarks}
+    {id, owner, secret, server, farm, title, addImageFromBookmarks, removeImageFromBookmarks}
 ) => {
     //HOOK
     const [changeButton, setChangeButton] = useState(true);
@@ -34,6 +35,7 @@ export const ImageItem: React.FC<ImageItemPropsType> = (
     }
     const onClickRemoveButtonHandler = () => {
         setChangeButton(true)
+        removeImageFromBookmarks(id)
     }
 
     return (
