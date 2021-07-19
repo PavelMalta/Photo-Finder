@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Photo-Finder/static/css/main.347d3f0b.chunk.css",
+    "main.js": "/Photo-Finder/static/js/main.51724234.chunk.js",
+    "main.js.map": "/Photo-Finder/static/js/main.51724234.chunk.js.map",
+    "runtime-main.js": "/Photo-Finder/static/js/runtime-main.7dd4f35c.js",
+    "runtime-main.js.map": "/Photo-Finder/static/js/runtime-main.7dd4f35c.js.map",
+    "static/js/2.289d0615.chunk.js": "/Photo-Finder/static/js/2.289d0615.chunk.js",
+    "static/js/2.289d0615.chunk.js.map": "/Photo-Finder/static/js/2.289d0615.chunk.js.map",
+    "static/js/3.9ddb20a8.chunk.js": "/Photo-Finder/static/js/3.9ddb20a8.chunk.js",
+    "static/js/3.9ddb20a8.chunk.js.map": "/Photo-Finder/static/js/3.9ddb20a8.chunk.js.map",
+    "index.html": "/Photo-Finder/index.html",
+    "static/css/main.347d3f0b.chunk.css.map": "/Photo-Finder/static/css/main.347d3f0b.chunk.css.map",
+    "static/js/2.289d0615.chunk.js.LICENSE.txt": "/Photo-Finder/static/js/2.289d0615.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7dd4f35c.js",
+    "static/js/2.289d0615.chunk.js",
+    "static/css/main.347d3f0b.chunk.css",
+    "static/js/main.51724234.chunk.js"
+  ]
+}
