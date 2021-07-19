@@ -14,7 +14,13 @@ export const SearchForm = () => {
     const dispatch = useDispatch()
     const [searchTerm, setSearchTerm] = useState('')
     
-    const debouncedSearchTerm = useDebounce(searchTerm, 1000)
+    const debouncedSearchTerm = useDebounce(searchTerm, 700)
+    
+    useEffect(() => {
+        if (!searchTerm) {
+        dispatch(isShowImageAC(false))
+    }
+    },[searchTerm])
 
     useEffect(() => {
             if (debouncedSearchTerm) {
@@ -27,7 +33,7 @@ export const SearchForm = () => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.currentTarget.value)
     }
-
+    
     return (
         <Grid container style={{padding: "30px"}}>
             <TextField
