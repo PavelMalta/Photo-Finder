@@ -9,11 +9,6 @@ const rootReducer = combineReducers({
     bookmarks: bookmarksReducer
 })
 
-let persistedState = loadState();
-const persistedTodosString = localStorage.getItem('app-state')
-
-
-
 export const store = createStore(rootReducer, loadState(), applyMiddleware(thunkMiddleware), )
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
