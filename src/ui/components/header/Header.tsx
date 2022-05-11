@@ -46,7 +46,7 @@ export const Header = () => {
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" color="inherit">
-                        Image Finder
+                        Image Finder/Поиск фото
                     </Typography>
                     <AccountCircle fontSize="large" style={{marginLeft: "auto"}}/>
                 </Toolbar>
